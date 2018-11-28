@@ -11,6 +11,42 @@
 <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
 <script type="text/javascript">
 	<!--菜单处理-->
+    $(function () {
+        $.ajax({
+            url:"${pageContext.request.contextPath}/menu/selectAll.do",
+            type:"post",
+            dataType:"json",
+            success:function(result){
+                $.each(result,function(index,first){
+                    var c="";
+                    //alert(first.title);
+                    $.each(first.menuList,function(index1,second){
+                        //alert(second.title);
+                        c=c+"<p style='text-align: center'><a id=\"btn\" href=\"#\" class=\"easyui-linkbutton\" onclick=\"addTab('"+second.title+"','"+second.url+"','"+second.iconcls+"')\" data-options=\"iconCls:'icon-search'\">"+second.title+"</a></P>";
+                    })
+                    $('#menu').accordion('add', {
+                        title: first.title,
+                        content: c,
+                        selected: true,
+                    });
+                })
+            }
+        })
+    });
+	function addTab(title,url,iconcls) {
+        //console.log(title);
+        var flag=$('#tt').tabs('exists',title);
+        if(flag){
+            $('#tt').tabs('select',title);
+        }else{
+            $('#tt').tabs('add',{
+                title: title,
+                selected: true,
+                href:"${pageContext.request.contextPath}"+url,
+                iconCls:iconcls,
+            });
+        }
+    }
 </script>
 
 </head>
@@ -25,8 +61,8 @@
        
     <div data-options="region:'west',title:'导航菜单',split:true" style="width:220px;">
     	<div id="aa" class="easyui-accordion" data-options="fit:true">
-    		
-		</div>  
+            <div id="menu" class="easyui-accordion"></div>
+        </div>
     </div>   
     <div data-options="region:'center'">
     	<div id="tt" class="easyui-tabs" data-options="fit:true,narrow:true,pill:true">   
