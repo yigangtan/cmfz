@@ -9,6 +9,8 @@
 <script type="text/javascript" src="../js/jquery.min.js"></script>   
 <script type="text/javascript" src="../js/jquery.easyui.min.js"></script>  
 <script type="text/javascript" src="../js/easyui-lang-zh_CN.js"></script>
+<script type="text/javascript" src="../js/datagrid-detailview.js"></script>
+<script type="text/javascript" src="../js/jquery.edatagrid.js"></script>
 <script type="text/javascript">
 	<!--菜单处理-->
     $(function () {
@@ -22,7 +24,7 @@
                     //alert(first.title);
                     $.each(first.menuList,function(index1,second){
                         //alert(second.title);
-                        c=c+"<p style='text-align: center'><a id=\"btn\" href=\"#\" class=\"easyui-linkbutton\" onclick=\"addTab('"+second.title+"','"+second.url+"','"+second.iconcls+"')\" data-options=\"iconCls:'icon-search'\">"+second.title+"</a></P>";
+                        c=c+"<p style='text-align: center'><a id=\"btn\" href=\"javascript:void(0)\" class=\"easyui-linkbutton\" onclick=\"addTab('"+second.title+"','"+second.url+"','"+second.iconcls+"')\" data-options=\"iconCls:'icon-search'\">"+second.title+"</a></P>";
                     })
                     $('#menu').accordion('add', {
                         title: first.title,
@@ -35,6 +37,7 @@
     });
 	function addTab(title,url,iconcls) {
         //console.log(title);
+        //alert("${pageContext.request.contextPath}"+url);
         var flag=$('#tt').tabs('exists',title);
         if(flag){
             $('#tt').tabs('select',title);
@@ -42,6 +45,7 @@
             $('#tt').tabs('add',{
                 title: title,
                 selected: true,
+                closable:true,
                 href:"${pageContext.request.contextPath}"+url,
                 iconCls:iconcls,
             });

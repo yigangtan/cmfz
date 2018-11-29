@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/user")
@@ -16,11 +15,11 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public String lotgin(String username, String password, HttpSession httpSession){
+    public String login(String username, String password, HttpSession httpSession){
         User user=userService.login(username,password);
         if(user!=null){
             httpSession.setAttribute("user", user);
-            //return "redirect:/main/main.jsp";
+            return "redirect:/main/main.jsp";
         }else{
             return "/login";
         }
