@@ -6,7 +6,7 @@
             <pattern> [%p] %d{yyyy-MM-dd HH:mm:ss} %m %n</pattern>
         </layout>
     </appender>
-    <root level="info">
+    <root level="debug">
         <appender-ref ref="stdout"/>
     </root>
     <logger name="com.baizhi.dao" level="DEBUG"/>

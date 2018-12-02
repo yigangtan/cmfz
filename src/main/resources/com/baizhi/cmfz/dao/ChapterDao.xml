@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.cmfz.dao.ChapterDao" >
+  <resultMap id="BaseResultMap" type="com.baizhi.cmfz.entity.Chapter" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="duwn_path" property="duwnPath" jdbcType="VARCHAR" />
+    <result column="upload_date" property="uploadDate" jdbcType="TIMESTAMP" />
+    <result column="viwdpager_id" property="viwdpagerId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, title, size, duration, duwn_path, upload_date, viwdpager_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from chapter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from chapter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.baizhi.cmfz.entity.Chapter" >
+    insert into chapter (id, title, size, 
+      duration, duwn_path, upload_date, 
+      viwdpager_id)
+    values (#{id,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
+      #{duration,jdbcType=VARCHAR}, #{duwnPath,jdbcType=VARCHAR}, #{uploadDate,jdbcType=TIMESTAMP}, 
+      #{viwdpagerId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.baizhi.cmfz.entity.Chapter" >
+    insert into chapter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="duwnPath != null" >
+        duwn_path,
+      </if>
+      <if test="uploadDate != null" >
+        upload_date,
+      </if>
+      <if test="viwdpagerId != null" >
+        viwdpager_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="duwnPath != null" >
+        #{duwnPath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDate != null" >
+        #{uploadDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viwdpagerId != null" >
+        #{viwdpagerId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.baizhi.cmfz.entity.Chapter" >
+    update chapter
+    <set >
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null" >
+        duration = #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="duwnPath != null" >
+        duwn_path = #{duwnPath,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDate != null" >
+        upload_date = #{uploadDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="viwdpagerId != null" >
+        viwdpager_id = #{viwdpagerId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.baizhi.cmfz.entity.Chapter" >
+    update chapter
+    set title = #{title,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=VARCHAR},
+      duwn_path = #{duwnPath,jdbcType=VARCHAR},
+      upload_date = #{uploadDate,jdbcType=TIMESTAMP},
+      viwdpager_id = #{viwdpagerId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <insert id="add">
+    insert into chapter values (#{id},#{title},#{size},#{duration},#{duwnPath},#{uploadDate},#{viwdpagerId})
+  </insert>
+</mapper>

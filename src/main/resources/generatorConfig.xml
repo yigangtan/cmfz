@@ -40,7 +40,7 @@
         </javaClientGenerator>
         
         <!-- 要生成哪些表 -->
-        <table tableName="viewpager" domainObjectName="viewpager"
+        <table tableName="chapter" domainObjectName="Chapter"
             enableCountByExample="false" enableUpdateByExample="false"
             enableDeleteByExample="false" enableSelectByExample="false"
             selectByExampleQueryId="false">
